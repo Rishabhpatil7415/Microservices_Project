@@ -1,0 +1,49 @@
+package com.employee.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.employee.model.dto.EmployeeDTO;
+import com.employee.repository.EmployeeRepository;
+
+public class EmployeeServiceImpl implements EmployeeService{
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private ModelMapper modelmapper;
+	
+	@Override
+	public EmployeeDTO saveEmployee(EmployeeDTO employeeDTo) {
+	     
+		
+		return null;
+	}
+
+	@Override
+	public EmployeeDTO updateEmployee(Long id, EmployeeDTO employeedto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteEmployee(Long id) {
+	
+		
+	}
+
+	@Override
+	public EmployeeDTO getSingleEmployee(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<EmployeeDTO> getAllEmployees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

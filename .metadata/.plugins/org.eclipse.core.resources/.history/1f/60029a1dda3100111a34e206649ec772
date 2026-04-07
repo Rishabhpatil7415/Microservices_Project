@@ -1,0 +1,37 @@
+package com.employee.service;
+
+import com.employee.model.dto.EmployeeDTO;
+
+public class EmployeeServiceImpl implements EmployeeService{
+
+	@Override
+	public EmployeeDTO saveEmployee(EmployeeDto employeeDTo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EmployeeDTO updateEmployee(Long id, EmployeeDTO employeedto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteEmployee(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public EmployeeDTO getSingleEmployee(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<EmployeeDto> getAllEmployees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

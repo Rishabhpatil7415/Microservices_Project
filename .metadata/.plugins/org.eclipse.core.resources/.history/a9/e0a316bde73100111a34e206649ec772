@@ -1,0 +1,71 @@
+package com.employee.service;
+
+import java.util.List;
+import java.util.Objects;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.employee.model.dto.EmployeeDTO;
+import com.employee.model.entity.Employee;
+import com.employee.repository.EmployeeRepository;
+
+public class EmployeeServiceImpl implements EmployeeService{
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private ModelMapper modelmapper;
+	
+	@Override
+	public EmployeeDTO saveEmployee(EmployeeDTO employeeDTo) {
+		 if(employeeDTo != null)
+		 {
+			 throw new RuntimeException("Employee already exists");
+		 }
+	     Employee emp=modelmapper.map(employeeDTo,Employee.class);
+	     Employee e=employeeRepository.save(emp);
+	     return modelmapper.map(e,EmployeeDTO.class);
+	}
+
+	@Override
+	public EmployeeDTO updateEmployee(Long Id, EmployeeDTO employeedto) {
+	    if(Id == null && employeedto.getId()== null)
+	    {
+	    	throw new RuntimeException("Please provide employee id");
+	    }
+	    if(Objects.equals(Id,employeedto.getId())) {
+	    	throw new RuntimeException("Invalid Id");
+	    }
+	    
+	    Employee e12 = employeeRepository.findById(Id)
+	    .orElseThrow(() ->new RuntimeException("Employee id is missing"));
+	    
+	    Employee e = employeeRepository.save(e12);
+	    return modelmapper.map(e,EmployeeDTO.class);
+
+	}
+
+	@Override
+	public void deleteEmployee(Long id) {
+		Employee e =  employeeRepository.findById(id)
+		    .orElseThrow(() ->new RuntimeException("Employee id is missing"));
+		employeeRepository.delete(e);
+	}
+
+	@Override
+	public EmployeeDTO getSingleEmployee(Long Id) {
+		
+		 Employee e12 = employeeRepository.findById(Id)
+				    .orElseThrow(() ->new RuntimeException("Employee id is missing"));
+		 return modelmapper.map(e12, EmployeeDTO.class);
+	}
+
+	@Override
+	public List<EmployeeDTO> getAllEmployees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

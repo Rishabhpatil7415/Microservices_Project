@@ -1,0 +1,16 @@
+package com.employee.service;
+
+import com.employee.model.dto.EmployeeDTO;
+
+Interface EmployeeServices {
+	
+     EmployeeDto saveEmployee(EmployeeDto employeeDTo);
+     
+     EmployeeDto updateEmployee(Long id,EmployeeDto employeedto);
+     
+     void deleteEmployee(Long id);
+     
+     EmployeeDTO getSingleEmployee(Long id);
+     
+     List<EmployeeDto> getAllEmployees();
+}

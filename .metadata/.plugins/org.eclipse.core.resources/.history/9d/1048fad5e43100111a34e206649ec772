@@ -1,0 +1,58 @@
+package com.employee.service;
+
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.employee.model.dto.EmployeeDTO;
+import com.employee.model.entity.Employee;
+import com.employee.repository.EmployeeRepository;
+
+public class EmployeeServiceImpl implements EmployeeService{
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private ModelMapper modelmapper;
+	
+	@Override
+	public EmployeeDTO saveEmployee(EmployeeDTO employeeDTo) {
+		 if(employeeDTo != null)
+		 {
+			 throw new RuntimeException("Employee already exists");
+		 }
+	     Employee emp=modelmapper.map(employeeDTo,Employee.class);
+	     Employee e=employeeRepository.save(emp);
+	     return modelmapper.map(e,EmployeeDTO.class);
+	}
+
+	@Override
+	public EmployeeDTO updateEmployee(Long id, EmployeeDTO employeedto) {
+	    if(id ==null && employeedto.getId())
+	    {
+	    	throw new RuntimeException("");
+	    }
+		return null;
+	}
+
+	@Override
+	public void deleteEmployee(Long id) {
+	
+		
+	}
+
+	@Override
+	public EmployeeDTO getSingleEmployee(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<EmployeeDTO> getAllEmployees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
