@@ -1,0 +1,23 @@
+package com.employee.exception;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+	@ExceptionHandler
+	public ResponseEntity<ErrorResponse> handleresourcenotfoundexception(ResourceNotFoundException ex){
+		ErrorResponse error =new ErrorResponse(ex.getMessage(),ex.getHttpStatus());
+		return new ResponseEntity<>(error,ex.getHttpStatus());
+		
+	}
+	
+	@ExceptionHandler
+	public ResponseEntity<ErrorResponse> handleresourcenotfoundexception(BadRequestException ex){
+		ErrorResponse error =new ErrorResponse(ex.getMessage(),ex.getHttpstatus());
+		return new ResponseEntity<>(error,ex.getHttpstatus());	
+	}
+}

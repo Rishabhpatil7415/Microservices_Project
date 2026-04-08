@@ -8,6 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.employee.exception.BadRequestException;
+import com.employee.exception.ResourceNotFoundException;
 import com.employee.model.dto.EmployeeDTO;
 import com.employee.model.entity.Employee;
 import com.employee.repository.EmployeeRepository;
@@ -25,7 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	public EmployeeDTO saveEmployee(EmployeeDTO employeeDTo) {
 		 if(employeeDTo.getId() != null)
 		 {
-			 throw new RuntimeException("Employee already exists");
+			 throw new BadRequestException("Employee already exists");
 		 }
 	     Employee emp=modelmapper.map(employeeDTo,Employee.class);
 	     Employee e=employeeRepository.save(emp);
@@ -36,14 +38,14 @@ public class EmployeeServiceImpl implements EmployeeService{
 	public EmployeeDTO updateEmployee(Long Id, EmployeeDTO employeedto) {
 	    if(Id == null || employeedto.getId()== null)
 	    {
-	    	throw new RuntimeException("Please provide employee id");
+	    	throw new BadRequestException("Please provide employee id");
 	    }
 	    if(!Objects.equals(Id,employeedto.getId())) {
-	    	throw new RuntimeException("Invalid Id");
+	    	throw new BadRequestException("Invalid Id");
 	    }
 	    
 	    Employee e12 = employeeRepository.findById(Id)
-	    .orElseThrow(() ->new RuntimeException("Employee id is missing"));
+	    .orElseThrow(() ->new ResourceNotFoundException("Employee id is missing "+Id));
 	    
 	    Employee e = employeeRepository.save(e12);
 	    return modelmapper.map(e,EmployeeDTO.class);
@@ -51,9 +53,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public void deleteEmployee(Long id) {
-		Employee e =  employeeRepository.findById(id)
-		    .orElseThrow(() ->new RuntimeException("Employee id is missing"));
+	public void deleteEmployee(Long Id) {
+		Employee e =  employeeRepository.findById(Id)
+		    .orElseThrow(() ->new ResourceNotFoundException("Employee id is missing "+Id));
 		employeeRepository.delete(e);
 	}
 
@@ -61,7 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	public EmployeeDTO getSingleEmployee(Long Id) {
 		
 		 Employee e12 = employeeRepository.findById(Id)
-				    .orElseThrow(() ->new RuntimeException("Employee id is missing"));
+				    .orElseThrow(() ->new ResourceNotFoundException("Employee id is missing "+Id));
 		 return modelmapper.map(e12, EmployeeDTO.class);
 	}
 

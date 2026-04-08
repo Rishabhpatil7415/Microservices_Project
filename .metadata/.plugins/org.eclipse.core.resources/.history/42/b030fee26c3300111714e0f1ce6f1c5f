@@ -1,0 +1,28 @@
+package com.employee.exception;
+
+import org.springframework.http.HttpStatus;
+
+public class BadRequestException extends RuntimeException{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String message;
+	private HttpStatus httpstatus;
+	
+	public BadRequestException(String message) {
+		this.message =message;
+		this.httpstatus =HttpStatus.BAD_GATEWAY;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public HttpStatus getHttpstatus() {
+		return httpstatus;
+	}
+	
+	
+}
