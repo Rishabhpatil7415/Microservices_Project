@@ -2,6 +2,8 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Rishabh patil\Desktop\Microservices\Eureka-Server"/>
+			<item value="C:\Users\Rishabh patil\Desktop\Microservices\Address"/>
 			<item value="C:\Users\Rishabh patil\Desktop\Microservices\EMPLOYEE"/>
 		</list>
 		<list key="projectNameTemplate">
